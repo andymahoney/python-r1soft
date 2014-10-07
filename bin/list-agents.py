@@ -33,4 +33,9 @@ if __name__ == '__main__':
         if opts.decoration:
             print opts.decoration + host + opts.decoration[::-1]
         for agent in client.Agent.service.getAgents():
-            print agent.hostname
+            try:
+                agent.lastKnownAgentVersion
+            except AttributeError:
+                print agent.description + ", Unknown"
+            else:
+                print agent.description + ", " + agent.lastKnownAgentVersion
