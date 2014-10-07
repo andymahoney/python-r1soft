@@ -24,6 +24,7 @@ import datetime
 import r1soft
 
 logger = logging.getLogger('cdp-get-failed-backups')
+logger.addHandler(logging.StreamHandler())
 
 def read_config(config_filename):
     with open(config_filename) as f:
@@ -112,7 +113,7 @@ def handle_cdp5_server(server):
         except AttributeError:
             continue
         if policy.state not in ('ERROR', 'UNKNOWN'):
-            continue
+            print policy.state
         disksafe = client.DiskSafe.service.getDiskSafeByID(policy.diskSafeID)
         agent = client.Agent.service.getAgentByID(disksafe.agentID)
         task_list = [task for task in (client.TaskHistory.service.getTaskExecutionContextByID(tid) \
