@@ -8,4 +8,4 @@ cdp-backup-states CONFIGFILE
 
 config file format
 CPDVERSION:HOSTNAME:PORT:SSL(0|1):USER:PASSWORD
-5:miamisburg.tck.melbourne.co.uk:9080:0:user:pass
+
