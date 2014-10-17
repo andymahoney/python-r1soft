@@ -24,7 +24,7 @@ import collections
 
 import r1soft
 
-logger = logging.getLogger('cdp-get-failed-backups')
+logger = logging.getLogger('cdp-backup-states')
 logger.addHandler(logging.StreamHandler())
 
 def read_config(config_filename):
@@ -42,7 +42,7 @@ def read_config(config_filename):
 def handle_cdp5_server(server):
     last_successful = None
     host_results = []
-    status_counts= collections.OrderedDict()
+    status_counts= {}
     status_counts["OK"] = status_counts["ERROR"] = status_counts["ALERT"]=status_counts["UNKNOWN"]=status_counts["DISABLED"]=0
     
     client = r1soft.cdp3.CDP3Client(server['hostname'], server['username'],
@@ -87,6 +87,7 @@ if __name__ == '__main__':
         else:
             print server['hostname']
             print last_successful
-            for key in status_counts:
+            keys=sorted(status_counts.keys())
+            for key in keys:
                 print key  , status_counts[key]
             
