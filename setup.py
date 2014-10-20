@@ -23,11 +23,11 @@ from glob import glob
 
 setup(
     name='r1soft',
-    version='0.1.1',
+    version='0.1.2',
     description='',
-    author='Alex Headley',
-    author_email='aheadley@nexcess.net',
-    url='https://github.com/nexcess/python-r1soft',
+    author='Andy Mahoney',
+    author_email='andrew.mahoney@melbourne.co.uk',
+    url='https://github.com/andymahoney/python-r1soft',
     packages=['r1soft'],
     scripts=glob('./bin/*'),
 )
