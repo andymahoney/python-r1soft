@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
@@ -51,8 +50,9 @@ if __name__ == '__main__':
 		more.version = re.match('^\d+\.\d+\.\d+', more.version).group()
 		
 	except AttributeError:
-		version = str(subprocess.Popen(['rpm', '-qa', '*serverbackup-manager*'],stdout=subprocess.PIPE).communicate()[0])
-		more.version=re.match('\d+\.\d+\.\d+',version).group()
+		version = str(subprocess.Popen(['rpm', '-qa', '*serverbackup-manager*'],stdout=subprocess.PIPE).communicate()[0]).rstrip()
+		more.version = re.search('\d+\.\d+\.\d+', version).group()
+
 	print "Server Version " + str(more.version)
 	for pool in client.Configuration.service.getTaskSchedulerStatistics():
 		print pool[0] + " queue size " + str(pool[1].queueSize)
